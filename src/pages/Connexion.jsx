@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../Components/Layout";
 
 export default function Connexion() {
   const [code, setCode] = useState("");
   const formulaire = useRef(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,9 +18,12 @@ export default function Connexion() {
           body: formData,
         }
       );
-
-      const resultatJson = await resultat.json();
-      console.log(resultatJson);
+      console.log(resultat);
+      if (resultat.status === 200) {
+        const resultatJson = await resultat.json();
+        console.log(resultatJson.data.code);
+        navigate("/consignes");
+      }
     } catch (error) {
       console.log(error);
     }
