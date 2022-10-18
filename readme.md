@@ -4,14 +4,15 @@
 npm create vite@latest
 ```
 
-- Puis nom du projet
-- Puis select framework avec les ↑↓
+# - Puis nom du projet
+
+# - Puis select framework avec les ↑↓
 
 ```
 npm install
 ```
 
-- Puis :
+# - Puis :
 
 ```
 npm run dev
