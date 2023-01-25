@@ -5,7 +5,6 @@ import Layout from "../Components/Layout";
 export default function Consignes(props) {
   const navigate = useNavigate();
   const [consigne, setConsigne] = useState("");
-  console.log(props);
 
   useEffect(() => {
     fetch(

@@ -6,6 +6,7 @@ export default function Connexion(props) {
   const [code, setCode] = useState("");
   const [firstName, setFirstName] = useState("");
   const formulaire = useRef(null);
+  // On peut utiliser un composant redirect en React
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -19,12 +20,9 @@ export default function Connexion(props) {
           body: formData,
         }
       );
-      // console.log(resultat);
       if (resultat.status === 200) {
         const resultatJson = await resultat.json();
-        // console.log(resultatJson.eleve);
-        // console.log(resultatJson.questionnaire);
-        props.updateEleve(resultatJson.eleve);
+        // props.updateEleve(resultatJson.eleve);
         props.updateQuestionnaire(resultatJson.questionnaire);
         props.updateExamen(resultatJson.examen);
         navigate("/consignes");

@@ -5,13 +5,15 @@ import Layout from "../Components/Layout";
 export default function Question(props) {
   const formulaire = useRef();
   const [question, setQuestion] = useState("");
+  const [questionId, setQuestionId] = useState(null);
   const [reponses, setReponses] = useState([]);
+  const [numQuestion, setNumQuestion] = useState(1);
   const navigate = useNavigate();
 
   // 1 useEffect() -> fetch( api_exam_question + id questionnaire)
   useEffect(() => {
     fetch(
-      `https://127.0.0.1:8000/api/examen/question/${props.questionnaireId}`,
+      `https://127.0.0.1:8000/api/examen/question/${props.questionnaireId}/${numQuestion}`,
       {
         method: "GET",
       }
@@ -19,11 +21,16 @@ export default function Question(props) {
       .then((resultat) => resultat.json())
       .then((data) => {
         console.log(data);
-        setQuestion(data.question);
-        setReponses(data.reponses);
-        console.log("====================");
+        if (!data.questionId) {
+          navigate("/resultat");
+        } else {
+          setQuestion(data.question);
+          setReponses(data.reponses);
+          setQuestionId(data.questionId);
+          console.log("====================");
+        }
       });
-  }, []);
+  }, [numQuestion]);
 
   // texte de la question + reponses (plusieurs)
   // permet de mettre en page le formulaire
@@ -47,13 +54,8 @@ export default function Question(props) {
 
       if (resultat.status === 200) {
         const test = await resultat.json();
-        console.log(test);
 
-        // récupérer ce qui concerne les questions
-        // si retour = false
-        // navigate("/resultat");
-        // sinon
-        // mettre en page le formulaire
+        setNumQuestion(numQuestion + 1);
       }
     } catch (error) {
       console.log(error);
@@ -66,7 +68,7 @@ export default function Question(props) {
       <form onSubmit={handleSubmit} ref={formulaire}>
         {reponses.map((reponse) => {
           return (
-            <div className="form-group">
+            <div className="form-group" key={reponse.id}>
               <div className="form-check">
                 <input
                   type="radio"
@@ -74,9 +76,6 @@ export default function Question(props) {
                   id={reponse.id}
                   name="reponse"
                   value={reponse.id}
-                  // onChange={(event) => {
-                  //   setReponses(event.target.value);
-                  // }}
                 />
                 <label htmlFor={reponse.id} className="form-check-label">
                   {reponse.libelle}
@@ -87,6 +86,8 @@ export default function Question(props) {
         })}
         <button className="btn btn-primary my-3">Valider</button>
         <input type="hidden" name="idExamen" value={props.examenId} />
+        <input type="hidden" name="questionId" value={questionId} />
+        <input type="hidden" name="numQuestion" value={numQuestion} />
       </form>
     </Layout>
   );

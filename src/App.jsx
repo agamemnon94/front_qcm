@@ -6,7 +6,7 @@ import Question from "./pages/Question";
 import Resultat from "./pages/Resultat";
 
 export default function App() {
-  const [eleve, setEleve] = useState(null);
+  // const [eleve, setEleve] = useState(null);
   const [questionnaire, setQuestionnaire] = useState(null);
   const [examen, setExamen] = useState(null);
 
@@ -18,7 +18,7 @@ export default function App() {
           path="/"
           element={
             <Connexion
-              updateEleve={setEleve}
+              // updateEleve={setEleve}
               updateQuestionnaire={setQuestionnaire}
               updateExamen={setExamen}
             />
@@ -34,7 +34,7 @@ export default function App() {
             <Question questionnaireId={questionnaire} examenId={examen} />
           }
         />
-        <Route path="/resultat" element={<Resultat />} />
+        <Route path="/resultat" element={<Resultat examenId={examen} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,81 @@
+[App]
+{
+    id questionnaire
+    id examen
+}
+
+    [Connexion]
+    {
+        id eleve
+    }
+
+        - Formulaire de connexion
+
+        fetch /api/exam/connexion
+            + ajouter eleve dans Eleves 
+                - données du formulaire (prénom, nom, email)
+            => id eleve
+
+            + ajouter examen dans Examens
+                - id eleve
+                - id questionnaire (codeForm (formulaire) => id)
+            => id questionnaire, id_examen
+
+    [Consignes]
+    
+        - Afficher les Consignes
+
+            fetch /api/exam/Consignes
+                - id questionnaire (OK)
+            => texte des consignes
+
+        - Passer à la première question
+
+
+    [Question]
+    {
+        numéro d'ordre useState(1)
+    }
+
+        - Afficher une question + réponses associées
+
+            fetch /api/exam/question
+                - id questionnaire (OK)
+                - numéro d'ordre
+            => 
+                - texte de la question + textes des réponses
+                - plus de question -> [resultat]
+                - id question
+
+        - Traiter la réponse
+
+            fetch /api/exam/reponse
+                - id examen (OK)
+                - id question (OK)
+                - formData
+            => numéro d'ordre ++
+
+
+    
+    [Resultat]
+
+        - Afficher toutes les questions + réponses + code couleur + note ...
+
+        fetch /api/exam/resultat
+            - id examen
+        => liste des questions + réponses + bonne réponse oui/non
+
+
+
+
+
+----------------------------------------------------------------
+
+
+
+        const [numero, setNumero] = useState(1);
+
+
+        useEffect(() => {
+            fetch ....
+        }, [numero])
