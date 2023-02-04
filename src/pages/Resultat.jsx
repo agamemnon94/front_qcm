@@ -8,5 +8,5 @@ export default function Resultat() {
     </Layout>
   );
 }
-// On id questionnaire aller chercher toutes les questions lies ç ce questionnaire pour chaque question les réponses qui lui conviennent -> le mettre en page pour chaque question, la répponseélève puis voir si c'est la bonne ou pas
+// On id questionnaire aller chercher toutes les questions liées à ce questionnaire pour chaque question les réponses qui lui conviennent -> le mettre en page pour chaque question, la réponse élève puis voir si c'est la bonne ou pas
 // Essayer de raisonner en sql
