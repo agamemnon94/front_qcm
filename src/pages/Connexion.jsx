@@ -8,6 +8,7 @@ export default function Connexion(props) {
   const formulaire = useRef(null);
   // On peut utiliser un composant redirect en React
   const navigate = useNavigate();
+  console.log(props);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
