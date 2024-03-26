@@ -17,3 +17,23 @@ npm install
 ```
 npm run dev
 ```
+
+# Mettre à jour nodejs :
+
+- Connaître la version :
+```
+node -v
+```
+- Mettre à jour :
+[Télécharger nodejs](https://nodejs.org/en/download)
+
+# Mettre à jour Vite :
+
+-  Connaître la version installée :
+```
+npm list vite
+```
+- Mettre à jour :
+```
+npm install vite@latest
+```
