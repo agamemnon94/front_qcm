@@ -37,3 +37,13 @@ npm list vite
 ```
 npm install vite@latest
 ```
+
+# Vérifier la version de Vite
+```
+npm list vite
+```
+
+# Lancer l'application
+```
+npm run dev
+```
